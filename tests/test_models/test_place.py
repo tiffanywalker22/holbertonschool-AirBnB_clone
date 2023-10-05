@@ -33,3 +33,11 @@ class TestBase(unittest.TestCase):
         checkPyC = style.check_files(["tests/test_place.py"])
         self.assertEqual(checkPyC.total_errors, 0,
                          "Found code style errors (and warnings).")
+
+    def test_create_class(self):
+        """Test Creating Class correctly"""
+        my_model = BaseModel()
+        my_model.name = "My First Model"
+        my_model.my_number = 89
+        self.assertEqual(my_model.name, "My First Model")
+        self.assertEqual(my_model.id, 89)
