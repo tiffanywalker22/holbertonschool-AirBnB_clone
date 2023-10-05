@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 # base_model.py
 
-
 import uuid
 import datetime
-
 
 class Basemodel:
     """ Our class for Base """
@@ -27,3 +25,4 @@ class Basemodel:
         instance_dict['updated_at'] = self.updated_at.isoformat()
         return instance_dict
     
+
