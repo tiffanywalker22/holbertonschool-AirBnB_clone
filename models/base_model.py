@@ -2,19 +2,19 @@
 # base_model.py
 
 import uuid
-import datetime
+from datetime import datetime
 
-class Basemodel:
+class BaseModel:
     """ Our class for Base """
     def __init__(self):
         """ initalizes new instance of basemodel """
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
+        self.created_at = (datetime.now())
         self.updated_at = self.created_at
 
     def save(self):
         """ updates 'updated_at with current datetime """
-        self.updated_at = datetime.now()
+        self.updated_at = (datetime.now())
 
     def to_dict(self):
         """ converts instance to dictionary representation """
