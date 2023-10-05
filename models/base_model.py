@@ -6,6 +6,7 @@
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     """ Our class for Base """
     def __init__(self, *args, **kwargs):
@@ -35,9 +36,8 @@ class BaseModel:
         instance_dict['created_at'] = self.created_at.isoformat()
         instance_dict['updated_at'] = self.updated_at.isoformat()
         return instance_dict
-    
+
     def __str__(self):
         """ string rep of instance """
         class_name = self.__class__.__name__
         return f"[{class_name}] ({self.id}) {self.__dict__}"
-
