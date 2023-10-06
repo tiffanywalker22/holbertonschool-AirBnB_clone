@@ -6,13 +6,13 @@
 import unittest
 from models.base_model import BaseModel
 from models.engine import file_storage
-from models.engine.file_storage import FileStoarge
+from models.engine.file_storage import FileStorage
 from models import storage
 import pycodestyle
 import os
 
 
-class TestBase(unittest.TestCase):
+class TestFileStorage(unittest.TestCase):
 
     def test_module_docstring(self):
         """Tests module docstring"""
@@ -34,19 +34,23 @@ class TestBase(unittest.TestCase):
     def test_pycodestyle_model(self):
         """Tests if test file is pycodestyle compliant"""
         style = pycodestyle.StyleGuide(quiet=True)
-        checkPyC = style.check_files(["tests/test_engine_file_storage.py"])
+        checkPyC = style.check_files(["tests/test_models/test_engine/"
+                                     "test_file_storage.py"])
         self.assertEqual(checkPyC.total_errors, 0,
                          "Found code style errors (and warnings).")
 
     def test_all(self):
         """testing all function"""
+        self.my_obj = BaseModel()
+        self.storage = FileStorage()
         test_dict = self.storage.all()
         self.assertIsInstance(test_dict, dict)
-        self.assertIn(self.obj1, test_dict.values())
+        self.assertIn(self.my_obj, test_dict.values())
 
     def test_new(self):
         """testing new function"""
         my_model = BaseModel()
+        self.storage = FileStorage()
         self.storage.new(my_model)
         test_dict = self.storage.all()
         self.assertIn(my_model, test_dict.values())
@@ -61,4 +65,4 @@ class TestBase(unittest.TestCase):
     def test_reload(self):
         """testing the reload"""
         pass
-        #come back to this one
+        # come back to this one

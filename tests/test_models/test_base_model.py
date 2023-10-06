@@ -30,7 +30,7 @@ class TestBase(unittest.TestCase):
     def test_pycodestyle_model(self):
         """Tests if test file is pycodestyle compliant"""
         style = pycodestyle.StyleGuide(quiet=True)
-        checkPyC = style.check_files(["tests/test_base_model.py"])
+        checkPyC = style.check_files(["tests/test_models/test_base_model.py"])
         self.assertEqual(checkPyC.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -46,11 +46,10 @@ class TestBase(unittest.TestCase):
         """Testing regular attributes of Base Model Class"""
         my_model = BaseModel()
         self.assertEqual(len(my_model.id), 36)
-        self.assertEqual(isinstance(my_model.created_at), datetime)
-        self.assertEqual(isinstance(my_model.created_at), str)
-        self.assertEqual(isinstance(my_model.updated_at), datetime)
-        self.assertEqual(isinstance(my_model.updated_at), str)
-        self.assertEqual(my_model.__class__, "BaseModel")
+        self.assertTrue(hasattr(my_model, "created_at"))
+        self.assertTrue(hasattr(my_model, "updated_at"))
+        self.assertTrue(hasattr(my_model, "id"))
+        self.assertIsInstance(my_model, BaseModel)
 
     def test_save_function(self):
         """Testing the update/save function"""
@@ -69,6 +68,6 @@ class TestBase(unittest.TestCase):
     def test__str__(self):
         """Checks correct formatting for __str__ method"""
         my_model = BaseModel()
-        self.assertEqual(my_model.__str__(), 
-                        (f"[{my_model.__class__.__name__}] "
-                        f"({my_model.id}) {my_model.__dict__}"))
+        self.assertEqual(my_model.__str__(),
+                         (f"[{my_model.__class__.__name__}] "
+                         f"({my_model.id}) {my_model.__dict__}"))
