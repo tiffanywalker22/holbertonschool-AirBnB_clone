@@ -43,6 +43,6 @@ class FileStorage:
                 for key, value in objDict.items():
                     self.__objects[key] = eval(value["__class__"])(**value)
         except Exception as e:
-            print(e)
+            pass
 
     allowed_classes = [BaseModel, User]
