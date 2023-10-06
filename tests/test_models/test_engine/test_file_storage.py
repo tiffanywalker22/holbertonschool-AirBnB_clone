@@ -5,7 +5,9 @@
 
 import unittest
 from models.base_model import BaseModel
+from models.engine import file_storage
 from models.engine.file_storage import FileStoarge
+from models import storage
 import pycodestyle
 import os
 
@@ -14,7 +16,8 @@ class TestBase(unittest.TestCase):
 
     def test_module_docstring(self):
         """Tests module docstring"""
-        self.assertTrue(len(__import__("models").engine.file_storage.__doc__) > 0)
+        self.assertTrue(len(__import__("models").
+                        engine.file_storage.__doc__) > 0)
 
     def test_class_docstring(self):
         """Tests the class DocString"""
@@ -34,3 +37,28 @@ class TestBase(unittest.TestCase):
         checkPyC = style.check_files(["tests/test_engine_file_storage.py"])
         self.assertEqual(checkPyC.total_errors, 0,
                          "Found code style errors (and warnings).")
+
+    def test_all(self):
+        """testing all function"""
+        test_dict = self.storage.all()
+        self.assertIsInstance(test_dict, dict)
+        self.assertIn(self.obj1, test_dict.values())
+
+    def test_new(self):
+        """testing new function"""
+        my_model = BaseModel()
+        self.storage.new(my_model)
+        test_dict = self.storage.all()
+        self.assertIn(my_model, test_dict.values())
+
+    def test_save(self):
+        """testing save function"""
+        self.assertTrue(os.path.exists("file.json"))
+        with open("file.json", "r") as file:
+            all_data = file.read()
+        self.assertTrue(len(all_data) > 0)
+
+    def test_reload(self):
+        """testing the reload"""
+        pass
+        #come back to this one
