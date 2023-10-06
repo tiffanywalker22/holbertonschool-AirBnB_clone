@@ -8,6 +8,7 @@ import json
 import os
 import models
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -43,3 +44,5 @@ class FileStorage:
                     self.__objects[key] = eval(value["__class__"])(**value)
         except Exception as e:
             print(e)
+
+    allowed_classes = [BaseModel, User]
