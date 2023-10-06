@@ -16,8 +16,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """exits program using ctrl+d (EOF)"""
-        print("")
         return True
+    
+    def emptyline(self):
+        """empty line does nothing"""
+        return False
 
 
 if __name__ == '__main__':
