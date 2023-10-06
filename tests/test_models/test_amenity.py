@@ -30,6 +30,6 @@ class TestBase(unittest.TestCase):
     def test_pycodestyle_model(self):
         """Tests if test file is pycodestyle compliant"""
         style = pycodestyle.StyleGuide(quiet=True)
-        checkPyC = style.check_files(["tests/test_amenity.py"])
+        checkPyC = style.check_files(["tests/test_models/test_amenity.py"])
         self.assertEqual(checkPyC.total_errors, 0,
                          "Found code style errors (and warnings).")

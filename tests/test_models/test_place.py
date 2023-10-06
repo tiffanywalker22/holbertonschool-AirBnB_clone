@@ -30,7 +30,7 @@ class TestBase(unittest.TestCase):
     def test_pycodestyle_model(self):
         """Tests if test file is pycodestyle compliant"""
         style = pycodestyle.StyleGuide(quiet=True)
-        checkPyC = style.check_files(["tests/test_place.py"])
+        checkPyC = style.check_files(["tests/test_models/test_place.py"])
         self.assertEqual(checkPyC.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -40,4 +40,4 @@ class TestBase(unittest.TestCase):
         my_model.name = "My First Model"
         my_model.my_number = 89
         self.assertEqual(my_model.name, "My First Model")
-        self.assertEqual(my_model.id, 89)
+        self.assertEqual(my_model.my_number, 89)
