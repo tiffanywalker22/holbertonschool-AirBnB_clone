@@ -11,20 +11,19 @@
     margin: 20px;
     border: 1px solid #FF5A5F;
     border-radius: 4px;
-    padding: 10px;
+    display: inline-block;
 }
 
 .places h1 {
     font-size: 30px;
-    width: 100%;
     margin-top: 40px;
     margin-left: 20px;
+    width: 100%;
 }
 
 .places article h2 {
     font-size: 30px;
-    margin: 0;
-    padding-bottom: 1rem;
+    text-align: center;
 }
 
 .price_by_night {
